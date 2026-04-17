@@ -1,0 +1,116 @@
+export default function PaymentPage() {
+  const methods = [
+    { name: 'Dana', accountName: 'a.n. Fajar', number: '083823716279([archie-pay.vercel.app](https://archie-pay.vercel.app/)) 'GoPay', accountName: 'a.n. n azh', number: '083823716279' },
+    { name: 'ShopeePay', accountName: 'a.n. n azh', number: '083823716279' },
+    { name: 'SeaBank', accountName: 'a.n. n azh', number: '901331656258' },
+    { name: 'Bank Jago', accountName: 'a.n. n azh', number: '507996808130' },
+  ];
+
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert(`Berhasil disalin: ${text}`);
+    } catch {
+      alert('Gagal menyalin nomor.');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-neutral-950 text-white">
+      <section className="relative overflow-hidden border-b border-white/10 bg-gradient-to-b from-neutral-900 via-neutral-950 to-black">
+        <div className="mx-auto max-w-5xl px-6 py-16 md:px-8 md:py-24">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-4 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-sm text-white/70">
+              PAYMENT STORE
+            </p>
+            <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
+              Metode Pembayaran
+            </h1>
+            <p className="mt-4 text-base text-white/70 md:text-lg">
+              Silakan pilih metode pembayaran favorit Anda untuk menyelesaikan transaksi dengan cepat dan mudah.
+            </p>
+            <div className="mt-8 flex items-center justify-center gap-4">
+              <a
+                href="#payment"
+                className="rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg transition hover:-translate-y-0.5"
+              >
+                Masuk Sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main id="payment" className="mx-auto max-w-6xl px-6 py-12 md:px-8 md:py-16">
+        <div className="mb-10 text-center">
+          <h2 className="text-2xl font-semibold md:text-3xl">Metode Pembayaran</h2>
+          <p className="mt-2 text-white/60">Pilih metode pembayaran favorit Anda</p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {methods.map((item) => (
+            <div
+              key={item.name}
+              className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur"
+            >
+              <div className="mb-4 flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xl font-semibold">{item.name}</p>
+                  <p className="mt-1 text-sm text-white/60">{item.accountName}</p>
+                </div>
+                <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
+                  E-Wallet
+                </span>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
+                <p className="text-xs uppercase tracking-wide text-white/40">Nomor Pembayaran</p>
+                <p className="mt-2 break-all text-lg font-medium">{item.number}</p>
+              </div>
+
+              <div className="mt-4 flex gap-3">
+                <button
+                  onClick={() => copyToClipboard(item.number)}
+                  className="flex-1 rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-black transition hover:opacity-90"
+                >
+                  Salin
+                </button>
+                <button className="rounded-2xl border border-white/15 px-4 py-3 text-sm text-white/80 transition hover:bg-white/5">
+                  Detail
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <section className="mt-10 rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8">
+          <div className="grid gap-8 md:grid-cols-2 md:items-center">
+            <div>
+              <p className="text-sm uppercase tracking-[0.2em] text-white/40">QRIS</p>
+              <h3 className="mt-3 text-2xl font-semibold">Scan QR Code Pembayaran</h3>
+              <p className="mt-3 text-white/65">
+                Tekan area QR di samping lalu scan menggunakan aplikasi e-wallet atau mobile banking Anda.
+              </p>
+              <div className="mt-5 inline-flex rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white/80">
+                QRIS (Semua E-Wallet)
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <div className="w-full max-w-xs rounded-[2rem] border border-dashed border-white/15 bg-black/30 p-5 text-center">
+                <div className="aspect-square rounded-[1.5rem] bg-white p-4 text-black flex items-center justify-center text-sm">
+                  Tempatkan gambar QRIS di sini
+                </div>
+                <p className="mt-4 text-sm text-white/50">Klik untuk lihat QR Code</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-white/10 px-6 py-6 text-center text-sm text-white/40">
+        © ARCHIE - STORE
+      </footer>
+    </div>
+  );
+}
